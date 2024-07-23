@@ -2,9 +2,9 @@ const int trig=22;
 const int echo=21;
 const int playe=23;
 unsigned long thoigian;
-int khoangcach;
+float khoangcach;
 void setup() {
-pinMode(echo,OUTPUT);//cho các chân ra
+pinMode(echo,INPUT);//cho các chân ra
 pinMode(trig,OUTPUT);
 pinMode(playe,OUTPUT);
 Serial.begin(9600);
@@ -14,6 +14,8 @@ Serial.begin(9600);
 void loop() {
  khoangcach=0;
  dokhoangcach();
+ Serial.print(khoangcach);
+ delay(1000);
  if(khoangcach<50){
   digitalWrite(playe,HIGH);
  }
@@ -28,5 +30,5 @@ void dokhoangcach(){
   digitalWrite(trig,LOW);
 //Tính toán độ rộng của xung
   thoigian=pulseIn(echo,HIGH);
-  khoangcach=thoigian/2/29.412;//công thức khoảng cách= thời gian:2:1 trên tốc độ truyền âm
+  khoangcach=int((thoigian/2)/29.412);//công thức khoảng cách= thời gian:2:1 trên tốc độ truyền âm
 }
