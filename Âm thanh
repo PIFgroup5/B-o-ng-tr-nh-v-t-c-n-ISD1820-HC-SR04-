@@ -1,11 +1,19 @@
 const int playe=23;
+unsigned long A=0;
 void setup() {
+
 pinMode(playe,OUTPUT);
 Serial.begin(9600);
+
 }
 
 void loop() {
-digitalWrite(playe,1);
-delay(1000);
+unsigned long currenttime=millis();
+if(currenttime-A>=1000){
+  digitalWrite(playe,1);
+  A=currenttime;
+}
+else{
 digitalWrite(playe,0);
+}
 }
