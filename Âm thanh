@@ -1,34 +1,11 @@
-const int trig=22;
-const int echo=21;
 const int playe=23;
-unsigned long thoigian;
-float khoangcach;
 void setup() {
-pinMode(echo,INPUT);//cho các chân ra
-pinMode(trig,OUTPUT);
 pinMode(playe,OUTPUT);
 Serial.begin(9600);
-
 }
 
 void loop() {
- khoangcach=0;
- dokhoangcach();
- Serial.print(khoangcach);
- delay(1000);
- if(khoangcach<50){
-  digitalWrite(playe,HIGH);
- }
-else{
-  digitalWrite(playe,LOW);}
-}
-void dokhoangcach(){
-  digitalWrite(trig,LOW);
-  delayMicroseconds(2);
-  digitalWrite(trig,HIGH);
-  delayMicroseconds(10);
-  digitalWrite(trig,LOW);
-//Tính toán độ rộng của xung
-  thoigian=pulseIn(echo,HIGH);
-  khoangcach=int((thoigian/2)/29.412);//công thức khoảng cách= thời gian:2:1 trên tốc độ truyền âm
+digitalWrite(playe,1);
+delay(1000);
+digitalWrite(playe,0);
 }
