@@ -1,7 +1,10 @@
 const int playe=23;
+const int rec=21;
+int recorded=0;
+#define timerec 5000
 unsigned long A=0;
 void setup() {
-
+pinMode(rec,OUTPUT);
 pinMode(playe,OUTPUT);
 Serial.begin(9600);
 
@@ -9,7 +12,21 @@ Serial.begin(9600);
 
 void loop() {
 unsigned long currenttime=millis();
-if(currenttime-A>=1000){
+while(Serial.available()>0)
+{
+  char intchar=Serial.read();
+  if (intchar=='g'|| intchar=='G')
+  {
+    digitalWrite(rec,1);
+    Serial.println("Bat dau ghi am");
+    delay(timerec);
+    digitalWrite(rec,0);
+    recorded=1;
+    break;
+  }
+}
+
+if(currenttime-A>=1000 && recorded==1){
   digitalWrite(playe,1);
   A=currenttime;
 }
